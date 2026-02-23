@@ -1,0 +1,68 @@
+{
+  "name": "School Companion 2.0",
+  "short_name": "School Companion",
+  "description": "La tua app scolastica completa - Voti, Verifiche, Pagelle, Statistiche e To-Do",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0078d4",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Aggiungi Voto",
+      "short_name": "Voto",
+      "description": "Aggiungi rapidamente un voto",
+      "url": "/?shortcut=voti",
+      "icons": [
+        {
+          "src": "icons/icon-voti.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Verifiche",
+      "short_name": "Verifiche",
+      "description": "Visualizza verifiche in arrivo",
+      "url": "/?shortcut=verifiche",
+      "icons": [
+        {
+          "src": "icons/icon-verifiche.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0078d4">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <title>School Companion 2.0</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="nav-logo">
+        <img src="icons/logo.png" alt="School Companion" class="logo-img">
+        <div class="logo-text-wrapper">
+          <span class="logo-main">School Companion</span>
+          <span class="logo-sub">v2.0</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="settingsBtn" class="btn-icon-nav settings-btn" title="Impostazioni">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <!-- HOME -->
+    <div id="home" class="page active">
+      <div class="home-hero">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+          <div class="profile-section">
+            <div class="avatar-large" id="avatarDisplay">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="profile-info">
+              <h1>Ciao! 👋</h1>
+              <div class="profile-details">
+                <p class="profile-name" id="userName2">Alessandro Preziosi</p>
+                <p class="profile-data" id="profileData">3° A • Liceo Scientifico</p>
+                <p class="profile-date" id="dateTime"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-container">
+        <div class="card-item" onclick="openSection('voti')">
+          <div class="card-visual">
+            <div class="card-icon-img">
+              <img src="icons/icon-voti.png" alt="Voti">
+            </div>
+            <div class="card-info">
+              <h3>Voti</h3>
+              <p>Traccia i tuoi voti</p>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="card-item" onclick="openSection('statistiche')">
+          <div class="card-visual">
+            <div class="card-icon-img">
+              <img src="icons/icon-statistiche.png" alt="Statistiche">
+            </div>
+            <div class="card-info">
+              <h3>Statistiche</h3>
+              <p>Analizza i tuoi risultati</p>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="card-item" onclick="openSection('pagelle')">
+          <div class="card-visual">
+            <div class="card-icon-img">
+              <img src="icons/icon-pagelle.png" alt="Pagelle">
+            </div>
+            <div class="card-info">
+              <h3>Pagelle</h3>
+              <p>Visualizza le tue pagelle</p>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="card-item" onclick="openSection('todo')">
+          <div class="card-visual">
+            <div class="card-icon-img">
+              <img src="icons/icon-todo.png" alt="To-Do">
+            </div>
+            <div class="card-info">
+              <h3>To-Do</h3>
+              <p>Pianifica la tua giornata</p>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="card-item" onclick="openSection('verifiche')">
+          <div class="card-visual">
+            <div class="card-icon-img">
+              <img src="icons/icon-verifiche.png" alt="Verifiche">
+            </div>
+            <div class="card-info">
+              <h3>Verifiche</h3>
+              <p>Gestisci le verifiche</p>
+            </div>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOTI -->
+    <div id="votiSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-chart-bar"></i> Voti</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="add-section">
+          <div class="voto-input-group">
+            <div class="voto-select-wrapper">
+              <select id="materiaSelect" class="select-custom">
+                <option value="">Seleziona materia</option>
+              </select>
+              <i class="fas fa-book"></i>
+            </div>
+
+            <div class="voto-periodo-wrapper">
+              <select id="votoPeriodo" class="select-custom">
+                <option value="trim1">1° Trimestre</option>
+                <option value="pent">Pentamestre</option>
+              </select>
+              <i class="fas fa-calendar"></i>
+            </div>
+
+            <div class="voto-input-wrapper">
+              <div class="voto-display" id="votoDisplay">
+                <i class="fas fa-star"></i>
+                <span>0</span>
+              </div>
+              <input type="range" id="votoSlider" min="0" max="10" step="0.5" value="0" class="voto-slider">
+              <div class="voto-scale">
+                <span>0</span>
+                <span>5</span>
+                <span>10</span>
+              </div>
+            </div>
+
+            <button id="btnAggiungiVoto" class="btn-add-voto">
+              <i class="fas fa-check"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="items-section">
+          <h2><i class="fas fa-book-open"></i> Voti registrati</h2>
+          <ul id="listaVoti" class="items-grid"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATISTICHE -->
+    <div id="statisticheSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-chart-line"></i> Statistiche</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="periode-container">
+          <button class="btn-period active" onclick="mostraStatPerioodo('trim1')">
+            <i class="fas fa-calendar"></i> 1° Trim
+          </button>
+          <button class="btn-period" onclick="mostraStatPerioodo('pent')">
+            <i class="fas fa-calendar"></i> Pentam
+          </button>
+        </div>
+
+        <div id="statisticheContent" class="stats-content"></div>
+      </div>
+    </div>
+
+    <!-- PAGELLE -->
+    <div id="pagelleSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-scroll"></i> Pagelle</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="verifiche-tabs">
+          <button class="btn-verifica-tab active" onclick="cambiaTabPagelle('inserisci')">
+            <i class="fas fa-plus"></i> Inserisci
+          </button>
+          <button class="btn-verifica-tab" onclick="cambiaTabPagelle('storico')">
+            <i class="fas fa-history"></i> Storico
+          </button>
+          <button class="btn-verifica-tab" onclick="cambiaTabPagelle('predizione')">
+            <i class="fas fa-crystal-ball"></i> Predizione
+          </button>
+        </div>
+
+        <div id="pagelleInserisciView" class="pagelle-view active">
+          <div class="add-section">
+            <div class="form-group-vertical">
+              <select id="pagellaPerioodo" class="select-custom">
+                <option value="trim1">1° Trimestre (Sett-Dic)</option>
+                <option value="pent">Pentamestre (Gen-Giu)</option>
+              </select>
+              <input type="date" id="pagellaData" class="form-input">
+              <div id="pagellaInputMaterie" class="form-group-vertical" style="margin-top: 16px;"></div>
+              <button onclick="salvaPagella()" class="btn-add-verifica">
+                <i class="fas fa-save"></i> Salva Pagella
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="pagelleStorico View" class="pagelle-view">
+          <div class="items-section">
+            <h2><i class="fas fa-history"></i> Le tue pagelle</h2>
+            <div id="pagelleContent" class="pagelle-content"></div>
+          </div>
+        </div>
+
+        <div id="pagellePredizoneView" class="pagelle-view">
+          <div class="add-section">
+            <div class="form-group-vertical">
+              <label><i class="fas fa-wand-magic-sparkles"></i> Seleziona Periodo per Predizione</label>
+              <select id="predizionePeriodo" class="select-custom" onchange="calcolaPredizione()">
+                <option value="">-- Scegli --</option>
+                <option value="trim1">1° Trimestre (Sett-Dic)</option>
+                <option value="pent">Pentamestre (Gen-Giu)</option>
+              </select>
+            </div>
+          </div>
+          <div id="predizionContent" class="items-section" style="margin-top: 20px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODO -->
+    <div id="todoSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-list-check"></i> To-Do</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="add-section">
+          <div class="input-wrapper-multi">
+            <input type="time" id="todoOra" class="form-input" title="Ora">
+            <input type="text" id="todoInput" placeholder="Aggiungi un task..." class="form-input">
+            <button onclick="aggiungiToDo()" class="btn-add-multi">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="items-section">
+          <h2><i class="fas fa-tasks"></i> Oggi</h2>
+          <ul id="todoContent" class="items-grid"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERIFICHE -->
+    <div id="verificheSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-clipboard-list"></i> Verifiche</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="verifiche-tabs">
+          <button class="btn-verifica-tab active" onclick="cambiaTabVerifiche('lista')">
+            <i class="fas fa-list"></i> Lista
+          </button>
+          <button class="btn-verifica-tab" onclick="cambiaTabVerifiche('calendario')">
+            <i class="fas fa-calendar-alt"></i> Calendario
+          </button>
+        </div>
+
+        <div id="verificheListaView" class="verifiche-view active">
+          <div class="add-section">
+            <div class="form-group-vertical">
+              <select id="verificaMateriaSelect" class="select-custom">
+                <option value="">Seleziona materia</option>
+              </select>
+              <input type="date" id="verificaData" class="form-input">
+              <select id="verificaTipo" class="select-custom">
+                <option value="verifica">📝 Verifica</option>
+                <option value="interrogazione">🗣️ Interrogazione</option>
+                <option value="test">✏️ Test</option>
+                <option value="progetto">🎯 Progetto</option>
+              </select>
+              <input type="text" id="verificaNote" placeholder="Note (opzionale)" class="form-input">
+              <button onclick="aggiungiVerifica()" class="btn-add-verifica">
+                <i class="fas fa-plus"></i> Aggiungi Verifica
+              </button>
+            </div>
+          </div>
+
+          <div class="items-section">
+            <h2><i class="fas fa-calendar-check"></i> Prossime verifiche</h2>
+            <ul id="verificheContent" class="items-grid"></ul>
+          </div>
+        </div>
+
+        <div id="verificheCalendarioView" class="verifiche-view">
+          <div class="calendario-container" id="calendarioContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPOSTAZIONI -->
+    <div id="settingsSection" class="page">
+      <div class="page-header">
+        <div class="header-top">
+          <h1><i class="fas fa-cog"></i> Impostazioni</h1>
+          <button class="btn-back-header" onclick="closeSection()">
+            <img src="icons/icon-back.png" alt="Indietro" class="btn-back-img">
+          </button>
+        </div>
+      </div>
+
+      <div class="page-content">
+        <div class="settings-grid">
+          <!-- PROFILO -->
+          <div class="settings-card">
+            <div class="settings-header">
+              <img src="icons/icon-profilo.png" alt="Profilo" class="settings-icon-img">
+              <h3>Profilo</h3>
+            </div>
+            <div class="settings-body">
+              <label><i class="fas fa-user"></i> Nome</label>
+              <input type="text" id="profiloNome" class="form-input" placeholder="Nome">
+              
+              <label style="margin-top: 12px;"><i class="fas fa-user"></i> Cognome</label>
+              <input type="text" id="profilo Cognome" class="form-input" placeholder="Cognome">
+              
+              <label style="margin-top: 12px;"><i class="fas fa-graduation-cap"></i> Anno</label>
+              <select id="profiloAnno" class="select-custom">
+                <option value="">Seleziona anno</option>
+                <option value="1">1° Anno</option>
+                <option value="2">2° Anno</option>
+                <option value="3">3° Anno</option>
+                <option value="4">4° Anno</option>
+                <option value="5">5° Anno</option>
+              </select>
+              
+              <label style="margin-top: 12px;"><i class="fas fa-layer-group"></i> Sezione</label>
+              <input type="text" id="profiloSezione" class="form-input" placeholder="Sezione (es: A, B, C)">
+              
+              <label style="margin-top: 12px;"><i class="fas fa-school"></i> Scuola</label>
+              <input type="text" id="profiloScuola" class="form-input" placeholder="Nome della scuola">
+              
+              <label style="margin-top: 12px;"><i class="fas fa-camera"></i> Foto Profilo</label>
+              <input type="file" id="profiloFoto" class="form-input" accept="image/*" style="padding: 8px;">
+              <img id="profiloFotoPreview" style="width: 80px; height: 80px; border-radius: 10px; margin-top: 10px; display: none; object-fit: cover;">
+              
+              <button id="btnSaveProfilo" class="btn-save" style="width: 100%; margin-top: 16px;">
+                <i class="fas fa-check"></i> Salva Profilo
+              </button>
+            </div>
+          </div>
+
+          <!-- MATERIE -->
+          <div class="settings-card">
+            <div class="settings-header">
+              <img src="icons/icon-voti.png" alt="Materie" class="settings-icon-img">
+              <h3>Materie</h3>
+            </div>
+            <div class="settings-body">
+              <label><i class="fas fa-plus-circle"></i> Aggiungi Materia</label>
+              <div style="display: flex; gap: 10px;">
+                <input type="text" id="settingsNomeMateria" class="form-input" placeholder="Nome materia">
+                <button id="btnAggiungiMateria" class="btn-save">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div style="margin-top: 16px;">
+                <h4 style="margin-bottom: 10px; font-size: 0.9rem;"><i class="fas fa-list"></i> Le tue materie:</h4>
+                <ul id="settingsListaMaterie" class="items-grid" style="max-height: 250px;"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- TEMA -->
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-palette"></i>
+              <h3>Tema</h3>
+            </div>
+            <div class="settings-body">
+              <label><i class="fas fa-lightbulb"></i> Modalità Scura</label>
+              <div style="display: flex; align-items: center; gap: 15px; margin-top: 12px;">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="darkModeToggle">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span id="themeStatus" style="font-size: 0.9rem; color: var(--text-secondary);">Disattivato</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BACKUP -->
+          <div class="settings-card">
+            <div class="settings-header">
+              <img src="icons/icon-backup.png" alt="Backup" class="settings-icon-img">
+              <h3>Backup</h3>
+            </div>
+            <div class="settings-body">
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Esporta o importa dati</p>
+              <div style="display: flex; gap: 10px;">
+                <button id="btnEsporta" class="btn-backup-export">
+                  <i class="fas fa-download"></i> Esporta
+                </button>
+                <button id="btnImporta" class="btn-backup-import">
+                  <i class="fas fa-upload"></i> Importa
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- INFO -->
+          <div class="settings-card">
+            <div class="settings-header">
+              <i class="fas fa-info-circle"></i>
+              <h3>Info</h3>
+            </div>
+            <div class="settings-body">
+              <p style="font-weight: 600; margin-bottom: 4px;"><i class="fas fa-graduation-cap"></i> School Companion</p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">v2.0 - Completamente offline</p>
+              <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 12px;"><i class="fas fa-heart"></i> Fatto con ❤️ per gli studenti</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notification-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
